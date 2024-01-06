@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/main_tab/main_tab_screen.dart';
+import 'screens/product_detail_screen.dart';
 
 void main() {
   runApp(const FoodBar());
@@ -23,6 +24,7 @@ class FoodBar extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => MainTabScreen(),
+        '/product_detail' : (context) => ProductDetails()
       },
     );
   }
