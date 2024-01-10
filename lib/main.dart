@@ -24,7 +24,6 @@ class FoodBar extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => MainTabScreen(),
-        '/product_detail' : (context) => ProductDetails()
       },
     );
   }

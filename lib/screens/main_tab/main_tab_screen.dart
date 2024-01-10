@@ -181,7 +181,7 @@ class _MainTabScreenState extends State<MainTabScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProductsScreen()));
+                            builder: (context) => ScanBarcode()));
                   },
                 ),
               ),

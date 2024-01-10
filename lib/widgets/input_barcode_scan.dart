@@ -120,7 +120,7 @@ class _InputBarcodeScanState extends State<InputBarcodeScan> {
                           _inputController.text = v;
                           _inputController.selection = cursorPosition;
                         });
-                        
+
                         if (v.length == 13 && !widget.isTransferSearch) {
                           _onSearch(v);
                         }
@@ -184,7 +184,7 @@ class _InputBarcodeScanState extends State<InputBarcodeScan> {
                         borderRadius: 4,
                         margin: const EdgeInsets.only(left: 10),
                         height: 50,
-                        color: Colors.yellow,
+                        color: Colors.yellow.shade700,
                         child: IconButton(
                             onPressed: () {
                               _onSearch(_inputController.text);
@@ -200,7 +200,7 @@ class _InputBarcodeScanState extends State<InputBarcodeScan> {
                         borderRadius: 4,
                         margin: const EdgeInsets.only(left: 10),
                         height: 50,
-                        color: Colors.green,
+                        color: Colors.green.shade900,
                         child: IconButton(
                             onPressed: () => _onScanWebCam(),
                             icon: const Icon(

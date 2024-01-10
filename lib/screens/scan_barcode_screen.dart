@@ -10,7 +10,7 @@ class ScanBarcode extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Scan Barcode'),
-        centerTitle: true,
+        backgroundColor: Colors.green.shade900,
       ),
       body: Center(
         child: Padding(
@@ -19,7 +19,6 @@ class ScanBarcode extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Uygulamanın başlığı
                 const Text(
                   'Please enter your product barcode or scan with camera your device',
                   style: TextStyle(
@@ -30,10 +29,9 @@ class ScanBarcode extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                // Barkod tarayıcı widget'ı
                 InputBarcodeScan(
                   onSearch: (value) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsScreen(barcode: value,)));
                   },
                 ),
               ],
