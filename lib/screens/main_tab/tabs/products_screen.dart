@@ -15,7 +15,7 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   String _errorMessage = '';
   bool _fetching = false;
-  List<FoodProduct> _product = [];
+  FoodProduct? _product;
 
   Future<void> getProducts() async {
     try {
@@ -34,23 +34,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
       var jsonResponse = convert.jsonDecode(response.body);
 
-      List<FoodProduct> responseProduct = [];
+      FoodProduct responseProduct = FoodProduct.fromJson(jsonResponse);
 
-      for (var product in jsonResponse['product'] as List) {
-        FoodProduct foodProduct = FoodProduct(
-            id: product['id'],
-            keywords: product['keywords'],
-            allergensTags: product['allergensTags'],
-            brands: product['id'],
-            categories: product['id'],
-            countries: product['countries'],
-            dataQualityWarningsTags: product['dataQualityWarningsTags'],
-            genericNameEn: product['genericNameEn'],
-            imageFrontSmallUrl: product['id'],
-            ingredientsTextEn: product['ingredientsTextEn'],
-            productNameEn: product['id']);
-        responseProduct.add(foodProduct);
-      }
       setState(() {
         _product = responseProduct;
       });
@@ -74,33 +59,36 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Products'),
-          actions: [
-            if (_fetching)
-              Container(
-                margin: EdgeInsets.all(17),
-                height: 20,
-                width: 23,
-                child: (const CircularProgressIndicator(
-                  color: Colors.black,
-                )),
-              ),
-            if (!_fetching)
-              (IconButton(
-                onPressed: getProducts,
-                icon: const Icon(Icons.refresh),
-              ))
-          ],
-        ),
-        body: _fetching
-            ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemBuilder: (context, index) {
-                  var product = _product[index];
-                  return ProductLine(product: product);
-                },
-                itemCount: _product.length,
-              ));
+      appBar: AppBar(
+        title: const Text('Products'),
+        actions: [
+          if (_fetching)
+            Container(
+              margin: EdgeInsets.all(17),
+              height: 20,
+              width: 23,
+              child: (const CircularProgressIndicator(
+                color: Colors.black,
+              )),
+            ),
+          if (!_fetching)
+            (IconButton(
+              onPressed: getProducts,
+              icon: const Icon(Icons.refresh),
+            ))
+        ],
+      ),
+      body: _fetching
+          ? Center(child: CircularProgressIndicator())
+          : _product != null
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Product ID: ${_product!.id}'),
+                    // Add more details as needed
+                  ],
+                )
+              : Center(child: Text('No product data available')),
+    );
   }
 }
