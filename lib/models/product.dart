@@ -65,7 +65,6 @@ class FoodProduct {
   List<String> dataQualityWarningsTags;
   String genericNameEn;
   String imageFrontSmallUrl;
-  List<Ingredient> ingredients;
   String ingredientsTextEn;
   String productNameEn;
 
@@ -79,57 +78,24 @@ class FoodProduct {
     required this.dataQualityWarningsTags,
     required this.genericNameEn,
     required this.imageFrontSmallUrl,
-    required this.ingredients,
     required this.ingredientsTextEn,
     required this.productNameEn,
   });
 
   factory FoodProduct.fromJson(Map<String, dynamic> json) {
     return FoodProduct(
-      id: json['_id'],
-      keywords: List<String>.from(json['_keywords']),
-      allergensTags: List<String>.from(json['allergens_tags']),
-      brands: json['brands'],
-      categories: json['categories'],
-      countries: List<String>.from(json['countries']),
-      dataQualityWarningsTags: List<String>.from(json['data_quality_warnings_tags']),
-      genericNameEn: json['generic_name_en'],
-      imageFrontSmallUrl: json['image_front_small_url'],
-      ingredients: List<Ingredient>.from(json['ingredients'].map((ingredient) => Ingredient.fromJson(ingredient))),
-      ingredientsTextEn: json['ingredients_text_en'],
-      productNameEn: json['product_name_en'],
-    );
-  }
-}
-
-class Ingredient {
-  String id;
-  double percentEstimate;
-  double percentMax;
-  double percentMin;
-  String text;
-  String vegan;
-  String vegetarian;
-
-  Ingredient({
-    required this.id,
-    required this.percentEstimate,
-    required this.percentMax,
-    required this.percentMin,
-    required this.text,
-    required this.vegan,
-    required this.vegetarian,
-  });
-
-  factory Ingredient.fromJson(Map<String, dynamic> json) {
-    return Ingredient(
-      id: json['id'],
-      percentEstimate: json['percent_estimate'].toDouble(),
-      percentMax: json['percent_max'].toDouble(),
-      percentMin: json['percent_min'].toDouble(),
-      text: json['text'],
-      vegan: json['vegan'],
-      vegetarian: json['vegetarian'],
+      id: json['product']['_id'],
+      keywords: List<String>.from(json['product']['_keywords']),
+      allergensTags: List<String>.from(json['product']['allergens_tags']),
+      brands: json['product']['brands'],
+      categories: json['product']['categories'],
+      countries: List<String>.from(json['product']['countries']),
+      dataQualityWarningsTags:
+          List<String>.from(json['product']['data_quality_warnings_tags']),
+      genericNameEn: json['product']['generic_name_en'],
+      imageFrontSmallUrl: json['product']['image_front_small_url'],
+      ingredientsTextEn: json['product']['ingredients_text_en'],
+      productNameEn: json['product']['product_name_en'],
     );
   }
 }

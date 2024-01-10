@@ -47,7 +47,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
             dataQualityWarningsTags: product['dataQualityWarningsTags'],
             genericNameEn: product['genericNameEn'],
             imageFrontSmallUrl: product['id'],
-            ingredients: product['ingredients'],
             ingredientsTextEn: product['ingredientsTextEn'],
             productNameEn: product['id']);
         responseProduct.add(foodProduct);
