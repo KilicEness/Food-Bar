@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_bar/screens/scan_barcode_screen.dart';
 
-import 'tabs/products_screen.dart';
-
 class MainTabScreen extends StatefulWidget {
   const MainTabScreen({Key? key}) : super(key: key);
 

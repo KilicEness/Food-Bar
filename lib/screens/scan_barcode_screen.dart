@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_bar/screens/main_tab/tabs/products_screen.dart';
+import 'package:food_bar/screens/product_screen.dart';
 import 'package:food_bar/widgets/input_barcode_scan.dart';
 
 class ScanBarcode extends StatelessWidget {

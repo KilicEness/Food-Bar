@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_bar/screens/chat_gpt_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
@@ -62,11 +63,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, // AppBar'ın rengi
-        iconTheme:
-            IconThemeData(color: Colors.black), // Geri tuşu (back button) rengi
+        backgroundColor: Colors.green.shade900,
+        iconTheme: IconThemeData(color: Colors.white),
         title: const Text('Product Details',
-            style: TextStyle(color: Colors.black)), // Başlık rengi
+            style: TextStyle(color: Colors.white)),
         actions: [
           if (_fetching)
             Container(
@@ -74,14 +74,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
               height: 20,
               width: 23,
               child: const CircularProgressIndicator(
-                color: Colors.black, // CircularProgressIndicator rengi
+                color: Colors.black,
               ),
             ),
           if (!_fetching)
             IconButton(
               onPressed: getProducts,
-              icon: const Icon(Icons.refresh,
-                  color: Colors.black), // Refresh ikonu rengi
+              icon: const Icon(Icons.refresh, color: Colors.white),
             ),
         ],
       ),
@@ -127,7 +126,16 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                      )
+                      ),
+                      ElevatedButton.icon(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChatGPTScreen()));
+                          },
+                          icon: Icon(Icons.question_answer),
+                          label: const Text('Ai can fix you'))
                     ],
                   ),
                 )
