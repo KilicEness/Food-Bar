@@ -75,7 +75,6 @@ class FoodProduct {
     required this.productNameEn,
   });
 
-  // Factory method to create a FoodProduct instance from JSON data
   factory FoodProduct.fromJson(Map<String, dynamic> json) {
     return FoodProduct(
       id: json['product']['_id'],
