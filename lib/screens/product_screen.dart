@@ -64,13 +64,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green.shade900,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text('Product Details',
             style: TextStyle(color: Colors.white)),
         actions: [
           if (_fetching)
             Container(
-              margin: EdgeInsets.all(17),
+              margin: const EdgeInsets.all(17),
               height: 20,
               width: 23,
               child: const CircularProgressIndicator(
@@ -85,18 +85,18 @@ class _ProductsScreenState extends State<ProductsScreen> {
         ],
       ),
       body: _fetching
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : _product != null
               ? Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: ListView(
                     children: [
                       buildInfoRow('Product Name', _product!.productNameEn),
-                      buildInfoRow('Product ID', _product!.id),
+                      buildInfoRow('Generic Name', _product!.genericNameEn),
+                      buildInfoRow('Barcode', _product!.id),
                       buildInfoRow('Keywords', _product!.keywords.join(', ')),
                       buildInfoRow('Brands', _product!.brands),
                       buildInfoRow('Categories', _product!.categories),
-                      buildInfoRow('Generic Name', _product!.genericNameEn),
                       buildInfoRow('Data Quality Warnings',
                           _product!.dataQualityWarningsTags.join(', ')),
                       buildInfoRow('Ingredients', _product!.ingredientsTextEn),
@@ -113,7 +113,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 2,
                               blurRadius: 5,
-                              offset: Offset(0, 3),
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
@@ -132,10 +132,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ChatGPTScreen()));
+                                    builder: (context) => const ChatGPTScreen()));
                           },
-                          icon: Icon(Icons.question_answer),
-                          label: const Text('Ai can fix you'))
+                          icon: const Icon(Icons.question_answer),
+                          label: const Text('Ask ChatGPT for product or anything!'))
                     ],
                   ),
                 )
@@ -144,30 +144,51 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   Widget buildInfoRow(String label, String value) {
+    Color backgroundColor = Colors.transparent;
+    Widget? leadingIcon;
+
+    if (label == 'Data Quality Warnings') {
+      backgroundColor = Colors.red;
+      leadingIcon = const Icon(Icons.warning, color: Colors.white);
+    } else {
+      leadingIcon = const SizedBox.shrink();
+    }
+
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
+        color: backgroundColor,
         border: Border.all(
           color: Colors.grey.shade300,
           width: 1.0,
         ),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: leadingIcon,
           ),
-          const SizedBox(height: 5),
-          Text(
-            value,
-            style: const TextStyle(fontSize: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  value,
+                  style: const TextStyle(fontSize: 14),
+                ),
+              ],
+            ),
           ),
         ],
       ),
