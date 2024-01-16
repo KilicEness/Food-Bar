@@ -78,7 +78,7 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
 
   Widget _buildMessage(Message message) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: Column(
@@ -86,8 +86,8 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
               message.isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              message.isMe ? 'You' : 'GPT',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              message.isMe ? 'You' : 'My Ai',
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(message.text),
           ],
@@ -100,7 +100,7 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ChatGPT'),
+        title: const Text('My Ai'),
       ),
       body: Column(
         children: <Widget>[
@@ -129,7 +129,7 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: onSendMessage,
                 ),
               ],

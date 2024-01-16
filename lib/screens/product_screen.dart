@@ -127,15 +127,20 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       ElevatedButton.icon(
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const ChatGPTScreen()));
+                                    builder: (context) =>
+                                        const ChatGPTScreen()));
                           },
                           icon: const Icon(Icons.question_answer),
-                          label: const Text('Ask ChatGPT for product or anything!'))
+                          label: const Text(
+                              'Ask to My Ai for product or anything!'))
                     ],
                   ),
                 )
