@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import './screens/main_tab/main_tab_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'screens/main_tab_screen.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load();
   runApp(const FoodBar());
 }
 

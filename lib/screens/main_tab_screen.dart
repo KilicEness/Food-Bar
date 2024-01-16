@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_bar/screens/scan_barcode_screen.dart';
 
 class MainTabScreen extends StatefulWidget {
   const MainTabScreen({Key? key}) : super(key: key);
@@ -11,9 +12,6 @@ class _MainTabScreenState extends State<MainTabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('FoodBar'),
-      // ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -174,7 +172,12 @@ class _MainTabScreenState extends State<MainTabScreen> {
                 child: IconButton(
                   icon: const Icon(Icons.photo_camera_outlined,
                       color: Colors.white, size: 50),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ScanBarcode()));
+                  },
                 ),
               ),
             ),
